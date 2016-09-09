@@ -2,7 +2,7 @@
 
 namespace TeachMe\Http\Controllers\Auth;
 
-use TeachMe\User;
+use TeachMe\Entities\User;
 use Validator;
 use TeachMe\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -56,10 +56,27 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = new User ([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['password'])
         ]);
+
+        // Para usuarios con ROL ESPECIFICO. SE DEBE CREAR LA COLUMNA ROL EN LA TABLA USERS
+        //$user->role ='user';
+        $user->save();
+
+        return $user;
+
+    }
+
+    public function loginPath()
+    {
+        return route('login');
+    }
+
+    public function redirectPath()
+    {
+        return route('home');
     }
 }
