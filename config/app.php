@@ -139,7 +139,11 @@ return [
 
 
         // Agregadas por JCrespín
-        Collective\Html\HtmlServiceProvider::class,
+       
+        //Collective\Html\HtmlServiceProvider::class,
+
+        TeachMe\Providers\HtmlServiceProvider::class,
+
         /*
         *   VENDOR *
         */
