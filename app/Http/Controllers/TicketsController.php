@@ -5,6 +5,7 @@ namespace TeachMe\Http\Controllers;
 use Illuminate\Http\Request;
 
 use TeachMe\Entities\Ticket;
+use TeachMe\Entities\TicketComment;
 use TeachMe\Http\Requests;
 use TeachMe\Http\Controllers\Controller;
 
@@ -42,7 +43,8 @@ class TicketsController extends Controller
     {
 
         $ticket = Ticket::findOrFail($id);
-    	//dd('details: '.$id);
+
+
         return view('tickets/details', compact('ticket'));
     }
 
