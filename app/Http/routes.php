@@ -48,31 +48,45 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::group(['middleware' => 'auth'], function (){
 
+    // Crear solicitudes
     Route::get('/solicitar', [
         'as'    =>  'tickets.create',
         'uses'  =>  'TicketsController@create'
     ]);
+    Route::post('/solicitar', [
+        'as'    =>  'tickets.store',
+        'uses'  =>  'TicketsController@store'
+    ]);
 
+    // Votar
+    Route::post('votar/{id}', [
+        'as'    =>  'votes.submit',
+        'uses'  =>  'VotesController@submit'
+    ]);
+    Route::delete('votar/{id}', [
+        'as'    =>  'votes.destroy',
+        'uses'  =>  'VotesController@destroy'
+    ]);
+
+    // Comentar
+
+    // ADICIONALES AL VIDEO DEL CURSO
     Route::get('/home', [
         'as'	=>	'home',
         'uses'	=>	'HomeController@index'
     ]);
-
     Route::get('/', [
         'as'	=>	'tickets.latest',
         'uses'	=>	'TicketsController@latest'
     ]);
-
     Route::get('/populares', [
         'as'	=>	'tickets.popular',
         'uses'	=>	'TicketsController@popular'
     ]);
-
     Route::get('/pendientes', [
         'as'	=>	'tickets.open',
         'uses'	=>	'TicketsController@open'
     ]);
-
     Route::get('/tutoriales', [
         'as'	=>	'tickets.closed',
         'uses'	=>	'TicketsController@closed'
