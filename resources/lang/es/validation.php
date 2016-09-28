@@ -142,6 +142,7 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'title'                 => 'Título'
     ],
 
 ];
